@@ -1,19 +1,17 @@
-// function addloadEvent(func) {
-//     var oldonload = window.onload;
-//     if (typeof window.onload != "function") {
-//         console.log('1111')
-//         window.onload = func;
-//     } else {
-//         console.log('22222')
-//         window.onload = function() {
-//             if (oldonload) {
-//                 oldonload();
-//             }
-//             func();
-//         }
-//     }
-// }
-// addloadEvent(b);
+function addloadEvent(func) {
+    var oldonload = window.onload;
+    if (typeof window.onload != "function") {
+        window.onload = func;
+    } else {
+        window.onload = function() {
+            if (oldonload) {
+                oldonload();
+            }
+            func();
+        }
+    }
+}
+addloadEvent(b);
 
 function b() {
     var pn = document.getElementById("pn");
@@ -32,6 +30,7 @@ function b() {
         var txt = el.innerHTML;
         //创建一个新的total存储用
         var newtotal;
+        console.log(txt)
         //判断点击的文字内容
         if (txt == "赞") {
             //total值+1 因为我还没点击赞，所以要点击的时候就多了一个人 total+1
@@ -40,7 +39,6 @@ function b() {
             praise.innerHTML = newtotal == 1 ? "我觉得很赞" : "我和" + total + "个人觉得很赞";
             el.innerHTML = "取消赞";
         } else {
-
             //反之total值-1
             newtotal = total - 1;
             praise.innerHTML = newtotal == 0 ? "" : newtotal + "个人觉得很赞";
@@ -53,6 +51,7 @@ function b() {
     }
     //回复评论
     function reply(box) {
+        console.log('aaaa')
         //获取评论框
         var textarea = box.getElementsByTagName("textarea")[0];
         //获取包含所有评论的容器

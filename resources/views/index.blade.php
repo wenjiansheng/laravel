@@ -24,20 +24,15 @@
                 margin: 10px 0px 0px -20px;
                 padding-left: 5px;
             }
-            .autor span{
-                margin:0 6px;
-            }
             *{
                 padding-bottom: 1px;
             }
-
 
         </style>
     </head>
 
 
     <article>
-        <h2 class="about_h">您现在的位置是：<a href="/">首页</a></h2>
         <div class="banner">
             <ul class="texts">
                 <p>The best life is use of willing attitude, a happy-go-lucky life. </p>
@@ -53,13 +48,13 @@
                 <h3><a href="{{url('/article/'.$value->id)}}">{{$value->title}}</a></h3>
                 <figure><img src="/images/01.jpg" ></figure>
                 <ul class="show_text">
-                    <p class="entry-content clearfix">{{!! $value->content !!}}</p>
+                    <p class="entry-content clearfix">{{$value->content}}</p>
 
                 </ul>
-                <p class="autor auth" style="width: 337px"><span class="read"><a href="{{url('/article/'.$value->id)}}"  class="my-text">阅读全文&gt;&gt;</a></span></p>
-                <p class="autor" style="width: 337px"><span>作者：{{$value->author}}</span><span>分类：【<a href="{{url('/article?article_type_id='.$value->article_type_id)}}">{{$value->type_name}}</a>】
+                <p class="autor auth" style="width: 371px"><span class="read"><a href="{{url('/article/'.$value->id)}}"  class="my-text">阅读全文&gt;&gt;</a></span></p>
+                <p class="autor" style="width: 371px"><span>作者：{{$value->author}}</span><span>分类：【<a href="{{url('/article?article_type_id='.$value->article_type_id)}}">{{$value->type_name}}</a>】
                     </span><span>浏览（<a href="{{url('/article')}}">{{$value->read_quantity}}</a>）</span><span>评论（<a href="{{url('/article/'.$value->id.'/edit')}}">{{$value->discuss_times}}</a>）</span>
-                    </p>
+                    <span class="read"><a href="{{url('/article/'.$value->id)}}"  class="my-text">阅读全文&gt;&gt;</a></span></p>
                 <div class="dateview">{{date('Y-m-d',$value->create_time)}}</div>
             </div>
             @endforeach
@@ -99,7 +94,7 @@
             <p>职业：PHP后端工程师 </p>
             <p>籍贯：河北省―张家口市</p>
             <p>电话：15081374823</p>
-            <p>邮箱：ruoruchujian_wjs@163.com</p>
+            <p>邮箱：ruoruchujian_wja@163.com</p>
         </div>
         <div class="bdsharebuttonbox"><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a><a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_more" data-cmd="more"></a></div>
         <div class="tj_news">

@@ -31,11 +31,6 @@ abstract class Model implements Arrayable, ArrayAccess, Jsonable, JsonSerializab
         Concerns\GuardsAttributes,
         ForwardsCalls;
 
-    protected $error;
-    public function getError()
-    {
-        return $this->error;
-    }
     /**
      * The connection name for the model.
      *

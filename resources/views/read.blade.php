@@ -22,7 +22,7 @@
         <div class="about">
             <h2>{{$list->title}}</h2>
             <ul>
-                <p>&nbsp;&nbsp;{{!! $list->content !!}}</p>
+                <p>&nbsp;&nbsp;{{$list->content}}</p>
             </ul>
             <ul>
                 <li class="left"><a href="{{url('/article')}}">返回首页</a></li>

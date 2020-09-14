@@ -32,43 +32,15 @@ class ArticleController extends Controller
         $param = $request->input();
         $param['pid'] = !empty($param['pid']) ? $param['pid'] : '';
         $data = $model->getDiscuss($id);
-        $reply = $model->getReply($id);
 //        dd($data);
-        return view('discuss',['list'=>$data,'type'=>$param['pid'],'article_id'=>$id,'reply'=>$reply]);
+        return view('discuss',['list'=>$data,'type'=>$param['pid']]);
     }
 
     public function store(Request $request)
     {
         $model = new model;
         $param = $request->input();
-
-
         $data = $model->saveData($param);
-        if(!$data){
-            return $this->resultError($model->getError());
-        }
-        return $this->resultSuccess($model,'评论成功');
-    }
-
-    public function like(Request $request)
-    {
-        $model = new model;
-        $param = $request->input();
-        $data = $model->like($param);
-        if(!$data){
-            return $this->resultError($model->getError());
-        }
-        return $this->resultSuccess($model,'点赞成功');
-    }
-
-    public function reply(Request $request)
-    {
-        $model = new model;
-        $param = $request->input();
-        $data = $model->reply($param);
-        if(!$data){
-            return $this->resultError($model->getError());
-        }
-        return $this->resultSuccess($model,'回复成功');
+        return $data;
     }
 }

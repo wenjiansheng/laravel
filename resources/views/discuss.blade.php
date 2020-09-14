@@ -62,7 +62,7 @@
                 font-size: 16px;
             }
             .appraise{
-                height: 60px;
+                height: 100px;
                 margin-right: 5px;
                 margin-bottom: 10px;
             }
@@ -73,7 +73,7 @@
                 font-size: 14px;
                 color: black;
             }
-            .button{
+            button{
                 float: right;
                 display: inline-block;
                 *display: inline;
@@ -119,12 +119,12 @@
                 user-select: none;
             }
 
-            .button:hover{
+            button:hover{
                 background-color: #eee;
                 color: #555;
             }
 
-            .button:active{
+            button:active{
                 background: #e9e9e9;
                 position: relative;
                 top: 1px;
@@ -137,8 +137,7 @@
     </head>
 
 
-    <article >
-        <h2 class="about_h">您现在的位置是：<a href="/">首页</a>><a href="/">评论</a></h2>
+    <article>
         <div class="banner">
             <ul class="texts">
                 <p>The best life is use of willing attitude, a happy-go-lucky life. </p>
@@ -150,8 +149,8 @@
             <div class="content">
                 <div class="hf">
                     <textarea type="text"  class="hf-text appraise" autocomplete="off" maxlength="200">评论…</textarea>
-                    <button class="hf- button" >评论</button>
-                    <span class="hf-nu">0/200</span>
+                    <button class="hf-" >评论</button>
+                    <span class="">0/200</span>
                 </div>
             </div>
 
@@ -163,58 +162,51 @@
                             <div class="content">
                                 <p class="text"><span class="name">{{$value->appraise_person}}：</span>{{$value->discuss}}</p>
                                 <div class="pic"></div>
-                                <div discuss="{{$value->id}}"class="good"><span class="date">{{date('Y-m-d',$value->create_time)}}</span><a class="dzan" href="javascript:;">赞</a></div>
-                                <div class="people" total="{{$value->like}}">{{$value->like}}人觉得很赞</div>
+                                <div class="good"><span class="date">{{date('Y-m-d',$value->create_time)}}</span><a class="dzan" href="javascript:;">赞</a></div>
+                                <div class="people" total="2980">{{$value->like}}人觉得很赞</div>
                                 <div class="comment-list">
-                                    @foreach($reply as $val)
-                                        @if($val->discuss_id == $value->id)
                                     <div class="comment" user="self">
                                         <div class="comment-left"><img src="http://www.sucainiu.com/themes/images/demo/500x300-2.png" alt=""></div>
                                         <div class="comment-right">
-                                            <div class="comment-text"><span class="user">游客{{rand(1,100)}}：</span>{{$val->reply}}</div>
-                                            <div class="comment-date">{{date('Y-m-d',$val->create_time)}}
-                                                {{--<a class="comment-zan"  href="javascript:;" total="{{$value->like}}+1" my="1">{{$value->like}} 取消赞</a> --}}
-                                                <a class="comment-dele" href="javascript:;" >回复</a> </div>
+                                            <div class="comment-text"><span class="user">老王：</span>我</div>
+                                            <div class="comment-date">{{date('Y-m-d',$value->create_time)}} <a class="comment-zan" href="javascript:;" total="{{$value->like}}+1" my="1">{{$value->like}} 取消赞</a> <a class="comment-dele" href="javascript:;">回复</a> </div>
                                         </div>
                                     </div>
-                                        @endif
-                                    @endforeach
-                                    {{--<div class="comment" user="self">--}}
-                                        {{--<div class="comment-left"><img src="http://www.sucainiu.com/themes/images/demo/500x300-2.png" alt=""></div>--}}
-                                        {{--<div class="comment-right">--}}
-                                            {{--<div class="comment-text"><span class="user">我：</span>看哭了留卡号吧</div>--}}
-                                            {{--<div class="comment-date">{{date('Y-m-d',$value->create_time)}} <a class="comment-zan"  href="javascript:;" total="{{$value->like}}" my="0">赞</a> <a class="comment-dele" href="javascript:;">删除</a> </div>--}}
-                                        {{--</div>--}}
-                                    {{--</div>--}}
+                                    <div class="comment" user="self">
+                                        <div class="comment-left"><img src="http://www.sucainiu.com/themes/images/demo/500x300-2.png" alt=""></div>
+                                        <div class="comment-right">
+                                            <div class="comment-text"><span class="user">我：</span>看哭了留卡号吧</div>
+                                            <div class="comment-date">{{date('Y-m-d',$value->create_time)}} <a class="comment-zan" href="javascript:;" total="{{$value->like}}" my="0">赞</a> <a class="comment-dele" href="javascript:;">删除</a> </div>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="hf">
-                                    <textarea type="text" class="hf-text" autocomplete="off"   maxlength="100">评论…</textarea>
-                                    <button discuss_id="{{$value->id}}" class="hf-btn" >回复</button>
-                                    <span class="hf-nub">0/200</span>
+                                    <textarea type="text" class="hf-text" autocomplete="off" maxlength="100">评论…</textarea>
+                                    <button class="hf-btn">回复</button>
+                                    <span class="hf-nub">0/100</span>
                                 </div>
                             </div>
                         </li>
                     @endforeach
-
+                    <div class="page">
+                        <a title="Total record"><b>{{$list->total()}}条</b></a>
+                        <a href="{{url('/article?page=1'.'&article_type_id='.$type)}}">&lt;&lt;</a>
+                        @if($list->currentPage()>1)
+                            <a href="{{url('/article?page='.($list->currentPage()-1).'&article_type_id='.$type)}}">&lt;</a>
+                        @else
+                            <a href="{{url('/article?page=1'.'&article_type_id='.$type)}}">&lt;</a>
+                        @endif
+                        @for($i=1;$i<=$list->lastPage();$i++)
+                            <a href="{{url('/article?page='.$i.'&article_type_id='.$type)}}">{{$i}}</a>
+                        @endfor
+                        @if($list->currentPage() == $list->lastPage())
+                            <a href="{{url('/article?page='.($list->currentPage()).'&article_type_id='.$type)}}">&gt;</a>
+                        @else
+                            <a href="{{url('/article?page='.($list->currentPage()+1).'&article_type_id='.$type)}}">&gt;</a>
+                        @endif
+                        <a href="{{url('/article?page='.$list->lastPage().'&article_type_id='.$type)}}">&gt;&gt;</a>
+                    </div>
             </ul>
-            <div class="page">
-                {{--<a title="Total record"><b>{{$list->total()}}条</b></a>--}}
-                <a href="{{url('/article/'.$article_id.'/edit?page=1')}}">&lt;&lt;</a>
-                @if($list->currentPage()>1)
-                    <a href="{{url('/article/'.$article_id.'/edit??page='.($list->currentPage()-1))}}">&lt;</a>
-                @else
-                    <a href="{{url('/article/'.$article_id.'/edit?page=1')}}">&lt;</a>
-                @endif
-                @for($i=1;$i<=$list->lastPage();$i++)
-                    <a href="{{url('/article/'.$article_id.'/edit?page='.$i)}}">{{$i}}</a>
-                @endfor
-                @if($list->currentPage() == $list->lastPage())
-                    <a href="{{url('/article/'.$article_id.'/edit?page='.($list->currentPage()))}}">&gt;</a>
-                @else
-                    <a href="{{url('/article/'.$article_id.'/edit?page='.($list->currentPage()+1))}}">&gt;</a>
-                @endif
-                <a href="{{url('/article/'.$article_id.'/edit?page='.$list->lastPage())}}">&gt;&gt;</a>
-            </div>
         </div>
 
 
@@ -232,7 +224,7 @@
             <p>职业：PHP后端工程师 </p>
             <p>籍贯：河北省―张家口市</p>
             <p>电话：15081374823</p>
-            <p>邮箱：ruoruchujian_wjs@163.com</p>
+            <p>邮箱：ruoruchujian_wja@163.com</p>
         </div>
         <div class="bdsharebuttonbox"><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a><a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_more" data-cmd="more"></a></div>
         <div class="tj_news">
@@ -288,23 +280,15 @@
     <script>
         window.onload=function()
         {
-            b();
-            //评论
             var btn = document.getElementsByClassName('appraise')[0];
             btn.onclick = function(){
-                if(btn.defaultValue==btn.value){
-                    btn.value = "";
-                    $(".appraise").addClass('font');
-                }
+               btn.value = "";
+               $(".appraise").addClass('font');
 
             }
-            //评论
-            var appraise_btn = document.getElementsByClassName('hf-')[0];
-            appraise_btn.onclick = function () {
+            var reply_btn = document.getElementsByClassName('hf-')[0];
+            reply_btn.onclick = function () {
                 var content = btn.value
-                if(content == '评论…'){
-                    content = ''
-                }
                 var article_id = document.getElementsByClassName('list0')[0].id
                 var data = {
                     "article_id":article_id,
@@ -318,95 +302,12 @@
                     data: data,
                     dataType: 'text',
                     success: function (data) {
-                        var data = JSON.parse(data);
-                        if(data.code == 200){
-                            window.location.href = '/article/{{$article_id}}/edit';
-                        }else{
-                            alert(data.msg)
-                        }
-
+                        console.log(data)
 
                     }
                 });
             }
-            //文本域焦点事件
-            $('.appraise').focus(function () {
-                var textarea = $(".hf-text");
-                this.parentNode.className = 'hf hf-on';
-                this.value = this.value == '评论…' ? '' : this.value;
-            })
 
-            //文本域失焦事件
-            $('.appraise').blur(function() {
-                if (this.value == '') {
-                    this.parentNode.className = 'hf';
-                    this.value = '评论…';
-                }
-            })
-            //输入评论
-            $('.appraise').keyup(function () {
-                var len = $(this).val().length;
-                $(this).closest('div').find('.hf-nu').html(len + "/200");
-            })
-            //点赞
-            $('.dzan').click(function () {
-                var txt = $(this).html()
-                if(txt == '赞'){
-                    var discuss_id = $(this).closest('div').attr('discuss')
-                    var data = {
-                        "id":discuss_id
-                    }
-                    $.ajax({
-                        "headers": { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
-                        type: 'post',
-                        async: false,
-                        url: "/article/like",
-                        data: data,
-                        dataType: 'text',
-                        success: function (data) {
-                            var data = JSON.parse(data);
-                            console.log(data)
-                            if(data.code == 200){
-                                {{--window.location.href = '/article/{{$article_id}}/edit';--}}
-                            }else{
-                                alert(data.msg)
-                            }
-
-                        }
-                    });
-                }
-
-            })
-            //回复
-            var reply_btn = $('.hf-btn');
-            reply_btn.click (function () {
-                var content = $(this).closest('div').find('textarea').val()
-                var discuss_id = $(this).attr('discuss_id')
-                // var pid =
-                var data = {
-                    "discuss_id":discuss_id,
-                    "reply":content,
-                };
-                console.log('{{Request::getRequestUri()}}')
-                $.ajax({
-                    "headers": { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
-                    type: 'post',
-                    async: false,
-                    url: "/article/reply",
-                    data: data,
-                    dataType: 'text',
-                    success: function (data) {
-                        var data = JSON.parse(data);
-                        if(data.code == 200){
-                            window.location.href = '{{Request::getRequestUri()}}';
-                        }else{
-                            alert(data.msg)
-                        }
-
-
-                    }
-                });
-            })
         }
     </script>
     </html>

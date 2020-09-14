@@ -13,14 +13,20 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/','Blog\ArticleController@index');
-
 Route::view('/about', 'about')->name('about');
 Route::view('/new', 'new')->name('new');
 Route::view('/new_list', 'newlist')->name('new_list');
 Route::view('/share', 'share')->name('share');
-Route::group(['prefix'=>'article'],function(){
-    Route::post('/like','Blog\ArticleController@like');
-    Route::post('/reply','Blog\ArticleController@reply');
+
+//后台路由
+Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
+    Route::get('login','LoginController@index',['as'=>'index']);
+    Route::post('login','LoginController@login');
+    Route::get('/','LoginController@index');
+    Route::resource('article','ArticleController',['as'=>'article']);
 });
-Route::resource('article', 'Blog\ArticleController');
+
+
+
+//前端路由
+Route::resource('article','Blog\ArticleController',['as'=>'article']);

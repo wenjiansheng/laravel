@@ -2,9 +2,9 @@
 <html>
 <head>
     <meta charset="gb2312">
-    <title>黑色Html5响应式个人博客模板——主题《如影随形》</title>
-    <meta name="keywords" content="个人博客模板,博客模板,响应式" />
-    <meta name="description" content="如影随形主题的个人博客模板，神秘、俏皮。" />
+    <title>LifeSmile--清欢渡</title>
+    <meta name="keywords" content="LifeSmile--清欢渡" />
+    <meta name="description" content="LifeSmile--清欢渡的个人博客，神秘、俏皮。" />
     {{--<link href="http://libs.baidu.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet" />--}}
     <link href="http://cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet" />
     <link href="/sass/base.css" rel="stylesheet">

@@ -21,7 +21,7 @@ a.readmore { color: #f55f77; margin-left: 10px; font-weight: bold }
 .autor { color: #8c8d8d; line-height: 26px; background: url(../images/5794.png) no-repeat left; padding-left: 25px }
 .autor a { color: #0f9c7c; font-weight: bold }
 .autor span { margin: 0 5px 0 0; }
-.page { margin: 20px 0; text-align: center; width: 100%; overflow: hidden }
+.page { margin: 20px 0; text-align: center; width: 100%; overflow: hidden; }
 .page a b { color: #999; }
 .page>b, .page a { margin: 0 2px; height: 26px; line-height: 26px; border-radius: 50%; width: 26px; text-align: center; display: inline-block }
 .page a { margin: 0 2px; height: 26px; line-height: 26px; border-radius: 50%; width: 26px; text-align: center; display: inline-block }/* ’Î∂‘IE6 */
